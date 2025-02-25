@@ -1,0 +1,25 @@
+[29-Jan-2025 11:35:29 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/product.php:122
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/product/readProductById.php(76): Product->readProductById()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/product.php on line 122
+[29-Jan-2025 11:35:36 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/product.php:122
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/product/readProductById.php(76): Product->readProductById()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/product.php on line 122
+[29-Jan-2025 11:35:40 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/product.php:122
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/product/readProductById.php(76): Product->readProductById()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/product.php on line 122
+[29-Jan-2025 11:35:46 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/product.php:122
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/product/readProductById.php(76): Product->readProductById()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/product.php on line 122
+[29-Jan-2025 11:36:02 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/product.php:122
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/product/readProductById.php(76): Product->readProductById()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/product.php on line 122

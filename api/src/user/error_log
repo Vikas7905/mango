@@ -1,0 +1,35 @@
+[29-Jan-2025 11:35:29 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/user.php:46
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/user/read_user_pincode.php(51): User->readUserPincode()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/user.php on line 46
+[29-Jan-2025 11:35:36 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/user.php:46
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/user/read_user_pincode.php(51): User->readUserPincode()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/user.php on line 46
+[29-Jan-2025 11:35:40 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/user.php:46
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/user/read_user_pincode.php(51): User->readUserPincode()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/user.php on line 46
+[29-Jan-2025 11:35:46 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/user.php:46
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/user/read_user_pincode.php(51): User->readUserPincode()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/user.php on line 46
+[29-Jan-2025 11:35:48 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/user.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/user/change_user_pincode.php(45): User->changeUserPincode()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/user.php on line 57
+[29-Jan-2025 11:36:02 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/user.php:46
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/user/read_user_pincode.php(51): User->readUserPincode()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/user.php on line 46
+[07-Feb-2025 19:23:55 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/user.php:66
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/user/read_user_pincode.php(51): User->readUserPincode()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/user.php on line 66

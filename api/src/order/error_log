@@ -1,0 +1,22 @@
+[31-Jan-2025 13:38:29 Asia/Kolkata] PHP Warning:  Attempt to read property "userId" on array in /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php on line 25
+[31-Jan-2025 13:38:29 Asia/Kolkata] PHP Warning:  Attempt to read property "paymentId" on array in /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php on line 26
+[03-Feb-2025 20:13:08 Asia/Kolkata] PHP Warning:  Attempt to read property "userId" on array in /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php on line 25
+[03-Feb-2025 20:13:08 Asia/Kolkata] PHP Warning:  Attempt to read property "paymentId" on array in /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php on line 26
+[04-Feb-2025 18:51:24 Asia/Kolkata] PHP Warning:  Undefined variable $query in /home2/glintqnj/shivammangoshop.com/api/objects/order.php on line 65
+[04-Feb-2025 18:51:24 Asia/Kolkata] PHP Fatal error:  Uncaught ValueError: PDO::prepare(): Argument #1 ($query) cannot be empty in /home2/glintqnj/shivammangoshop.com/api/objects/order.php:65
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/objects/order.php(65): PDO->prepare('')
+#1 /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php(41): Order->readOrdersById()
+#2 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/order.php on line 65
+[04-Feb-2025 18:51:35 Asia/Kolkata] PHP Warning:  Undefined variable $query in /home2/glintqnj/shivammangoshop.com/api/objects/order.php on line 65
+[04-Feb-2025 18:51:35 Asia/Kolkata] PHP Fatal error:  Uncaught ValueError: PDO::prepare(): Argument #1 ($query) cannot be empty in /home2/glintqnj/shivammangoshop.com/api/objects/order.php:65
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/objects/order.php(65): PDO->prepare('')
+#1 /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php(41): Order->readOrdersById()
+#2 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/order.php on line 65
+[04-Feb-2025 20:50:33 Asia/Kolkata] PHP Warning:  Attempt to read property "userId" on array in /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php on line 25
+[04-Feb-2025 20:50:33 Asia/Kolkata] PHP Warning:  Attempt to read property "paymentId" on array in /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php on line 26
+[07-Feb-2025 15:09:43 Asia/Kolkata] PHP Warning:  Attempt to read property "userId" on array in /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php on line 25
+[07-Feb-2025 15:09:43 Asia/Kolkata] PHP Warning:  Attempt to read property "paymentId" on array in /home2/glintqnj/shivammangoshop.com/api/src/order/readOrderById.php on line 26

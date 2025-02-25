@@ -1,0 +1,2 @@
+[10-Dec-2024 14:52:14 Asia/Kolkata] PHP Warning:  Undefined property: stdClass::$sizeAttributeId in /home2/glintqnj/shivammangoshop.com/api/src/productskuid/insertproductskuid.php on line 50
+[10-Dec-2024 14:52:14 Asia/Kolkata] PHP Warning:  Undefined property: stdClass::$colorAttributeId in /home2/glintqnj/shivammangoshop.com/api/src/productskuid/insertproductskuid.php on line 51

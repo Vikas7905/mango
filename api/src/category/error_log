@@ -1,0 +1,95 @@
+[29-Jan-2025 11:35:29 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:42
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readCategory.php(44): Category->readcategories()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 42
+[29-Jan-2025 11:35:29 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:35:29 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:35:36 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:42
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readCategory.php(44): Category->readcategories()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 42
+[29-Jan-2025 11:35:36 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:35:36 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:35:40 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:42
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readCategory.php(44): Category->readcategories()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 42
+[29-Jan-2025 11:35:40 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:35:40 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:35:46 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:42
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readCategory.php(44): Category->readcategories()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 42
+[29-Jan-2025 11:35:46 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:35:46 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:36:02 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:42
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readCategory.php(44): Category->readcategories()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 42
+[29-Jan-2025 11:36:02 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:36:02 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:36:08 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[29-Jan-2025 11:36:18 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[07-Feb-2025 19:23:22 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
+[07-Feb-2025 19:23:59 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/glintqnj/shivammangoshop.com/api/objects/category.php:57
+Stack trace:
+#0 /home2/glintqnj/shivammangoshop.com/api/src/category/readSubCategory.php(33): Category->readCategoriesWithSub()
+#1 {main}
+  thrown in /home2/glintqnj/shivammangoshop.com/api/objects/category.php on line 57
