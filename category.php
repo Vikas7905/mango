@@ -16,10 +16,11 @@
     $resultCat = json_decode($response_cat);
  }
  ?>
+<div class="container">
    <div class="row">
                 <?php for($i=0; $i<sizeof($resultCat->records); $i++){ ?>
                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="shop-details.php?id=<?php echo $resultCat->records[$i]->id; ?>">
+                    <a href="shop-details.php?id=<?php echo $resultCat->records[$i]->id; ?>" style="width: 0.1px; height:0.1px">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="">
                             <img src="admin/productimages/<?php echo $resultCat->records[$i]->skuId; ?>/<?php echo $resultCat->records[$i]->skuId; ?>1.png" alt="">
@@ -50,7 +51,7 @@
                 </div>
                 <?php } ?>
    </div>
-
+   </div>
 
 
 

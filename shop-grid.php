@@ -1,7 +1,36 @@
 <?php include './includes/header.php' ?>
-<body>
-  <?php  include './includes/navbar.php' ?>
 
+<body>
+    <?php include './includes/navbar.php' ?>
+    <?php
+    include './constant.php';
+    include 'includes/curl_header_home.php';
+    $data = array();
+    $postData = json_encode($data);
+    $url = $URL . 'product/readProduct.php';
+    $readCurl = new CurlHome();
+    $response = $readCurl->createCurl($url, $postData, 0, 5, 1);
+    // print_r($response);
+    $result = json_decode($response);
+    if (isset($_GET['sort'])) {
+        $sort  = $_GET['sort'];
+        $data = array("sort" => $sort);
+        $postData = json_encode($data);
+        $readCurl = new CurlHome();
+        $response = $readCurl->createCurl($url, $postData, 0, 5, 1);
+        // print_r($response);
+        $result = json_decode($response);
+    }
+    if(isset($_GET['search'])){
+       $search = $_GET['search'];
+       $data = array("search"=>$search);
+       $postData = json_encode($data);
+       $readCurl = new CurlHome();
+       $response = $readCurl->createCurl($url, $postData, 0, 5, 1);
+       print_r($response);
+       $result =  json_decode($response);
+    }
+    ?>
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb2.png">
@@ -9,7 +38,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2>Shop</h2>
                         <div class="breadcrumb__option">
                             <a href="./index.html">Home</a>
                             <span>Shop</span>
@@ -25,7 +54,7 @@
     <section class="product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-5">
+                <!-- <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item">
                             <h4>Department</h4>
@@ -191,9 +220,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-9 col-md-7">
-                    <div class="product__discount">
+                </div> -->
+                <div class="col-lg-12">
+                    <!-- <div class="product__discount">
                         <div class="section-title product__discount__title">
                             <h2>Sale Off</h2>
                         </div>
@@ -309,48 +338,59 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
-                                    <span>Sort By</span>
-                                    <select>
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
-                                    </select>
+                                    <form action="shop-grid.php" method="GET">
+                                        <select name="sort" onchange="this.form.submit()">
+                                            <option value="default" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'default' ? 'selected' : ''; ?>>Default</option>
+                                            <option value="name_asc" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'name_asc' ? 'selected' : ''; ?>>A to Z</option>
+                                            <option value="name_desc" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'name_desc' ? 'selected' : ''; ?>>Z to A</option>
+                                            <option value="price_asc" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'price_asc' ? 'selected' : ''; ?>>Low to High</option>
+                                            <option value="price_desc" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'price_desc' ? 'selected' : ''; ?>>High to Low</option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4">
-                                <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-3">
-                                <div class="filter__option">
-                                    <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Crab Pool Security</a></h6>
-                                    <h5>$30.00</h5>
-                                </div>
+                        <?php for ($i = 0; $i < sizeof($result->records); $i++) { ?>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <a href="shop-details.php?id=<?php echo $result->records[$i]->id; ?>" style="width: 1px; height:1px;">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg" data-setbg="">
+                                            <img src="admin/productimages/<?php echo $result->records[$i]->skuId; ?>/<?php echo $result->records[$i]->skuId; ?>1.png" alt="">
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                <!-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
+                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="#"><?php echo $result->records[$i]->productName ?></a></h6>
+                                            <h5>
+    &#8377; 
+    <?php 
+    echo ($result->records[$i]->discount > 0) 
+        ? '<span style="text-decoration: line-through;">' . $result->records[$i]->price . '</span> ' 
+        : ''; // If discount exists, show the original price with strikethrough
+    
+    echo ($result->records[$i]->discount > 0) 
+        ? floor($result->records[$i]->price - (($result->records[$i]->price * $result->records[$i]->discount) / 100)) . ' <span class="h6 mx-2">' . $result->records[$i]->discount . '% off</span>' 
+        : $result->records[$i]->price; // Show discounted price, else show original price
+    ?>
+</h5>
+
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <?php }  ?>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
                                     <ul class="product__item__pic__hover">
@@ -365,7 +405,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
                                     <ul class="product__item__pic__hover">
@@ -380,7 +420,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-4.jpg">
                                     <ul class="product__item__pic__hover">
@@ -395,7 +435,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-5.jpg">
                                     <ul class="product__item__pic__hover">
@@ -410,7 +450,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-6.jpg">
                                     <ul class="product__item__pic__hover">
@@ -425,7 +465,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-7.jpg">
                                     <ul class="product__item__pic__hover">
@@ -440,7 +480,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-8.jpg">
                                     <ul class="product__item__pic__hover">
@@ -455,7 +495,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-9.jpg">
                                     <ul class="product__item__pic__hover">
@@ -470,7 +510,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-10.jpg">
                                     <ul class="product__item__pic__hover">
@@ -485,7 +525,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-11.jpg">
                                     <ul class="product__item__pic__hover">
@@ -500,7 +540,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/product/product-12.jpg">
                                     <ul class="product__item__pic__hover">

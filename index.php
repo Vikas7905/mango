@@ -125,7 +125,7 @@
         // print_r($response_all);
         $resultProduct = json_decode($response_all);
     }
-    $data = array("catId"=>"");
+    $data = array("catId" => "");
     $dataCat = array();
     $postdata = json_encode($data);
     $postdataCat = json_encode($dataCat);
@@ -148,14 +148,14 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
-                    <?php for($i=0; $i<sizeof($resultCat->records); $i++) {?>
+                    <?php for ($i = 0; $i < sizeof($resultCat->records); $i++) { ?>
                         <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                            <h5><a href="category.php?catId=<?php echo $resultCat->records[$i]->id ?>"><?php echo $resultCat->records[$i]->name ?></a></h5>
+                            <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
+                                <h5><a href="category.php?catId=<?php echo $resultCat->records[$i]->id ?>"><?php echo $resultCat->records[$i]->name ?></a></h5>
+                            </div>
                         </div>
-                    </div>
-                        <?php } ?>
-                        
+                    <?php } ?>
+
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
                             <h5><a href="#">Fresh Fruit</a></h5>
@@ -199,7 +199,7 @@
                         <ul>
                             <li class="active" data-filter="*">All</li>
                             <?php for ($i = 0; $i < sizeof($resultCat->records); $i++) { ?>
-                                <li data-filter=".<?php echo "data" . $resultCat->records[$i]->id ?>"><?php echo $resultCat->records[$i]->name ?></li>
+                                <li data-filter=".<?php echo "data". $resultCat->records[$i]->id ?>"><?php echo $resultCat->records[$i]->name ?></li>
                             <?php } ?>
                             <!-- <li class="active" data-filter="*">All</li> -->
                             <!-- <li data-filter=".oranges">Oranges</li>
@@ -211,7 +211,7 @@
                 </div>
             </div>
             <div class="row featured__filter" id="product-list">
-            <!-- <div id=""></div> -->
+                <!-- <div id=""></div> -->
                 <!-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                     <div class="featured__item">
                             <a href="shop-details.php">
@@ -558,70 +558,75 @@
         </div>
     </section>
     <!-- Latest Product Section End -->
-                                
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         let page = 1;
+        let isLoading = false; // Flag to prevent multiple AJAX calls
 
         function loadProducts() {
+            // Prevent multiple requests at once
+            if (isLoading) return;
+
+            isLoading = true; // Set loading flag to true
+
             $.ajax({
-                url: 'http://localhost/mango/api/src/product/readProduct.php',  // API to get products
+                url: '<?php echo $URL?>product/readProduct.php', // API to get products
                 method: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify({ page: page,
+                data: JSON.stringify({
+                    page: page,
                     catId: ""
-                 }),
+                }),
                 success: function(response) {
                     console.log(response);
-                    
+
                     if (response.records && response.records.length > 0) {
                         response.records.forEach(product => {
                             const productHTML = `
-                               <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo 'data' ?>${product['categoriesId']} fastfood">
-    <div class="featured__item">
-        <!-- Wrap the cart icon in a form -->
-        <form action="admin/action/cat_cookies.php" method="POST">
-            <a href="shop-details.php?id=${product['id']}" style="width:1px; height: 1px;">
-                <div class="featured__item__pic set-bg" data-setbg="admin/productimages/${product['skuId']}/${product['skuId']}1.png">
-                    <img src="admin/productimages/${product['skuId']}/${product['skuId']}1.png" alt="">
-                    <ul class="featured__item__pic__hover">
-                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                        <!-- Add product details as hidden fields in the form -->
-                        <li>
-                            <button type="submit" style="background: transparent; border: none" name="add_to_cart" value="1">
-                                <a><i class="fa fa-shopping-cart"></i></a>
-                            </button>
-                            <input type="hidden" name="product_id" value="${product['id']}">
-                            <input type="hidden" name="product_name" value="${product['productName']}">
-                            <input type="hidden" name="product_price" value="${product['price']}">
-                            <input type="hidden" name="product_sku" value="${product['skuId']}">
-                        </li>
-                    </ul>
-                </div>
-                <div class="featured__item__text">
-                    <h6><a href="#">${product['productName']}</a></h6>
-                    <h5>&#8377;
-                        ${product['discount'] > 0 ? `<span style="text-decoration: line-through;">${product['price']}</span>` : `${product['price']}`}
-                        ${product['discount'] > 0 ? `${Math.floor(product['price'] - ((product['price'] * product['discount'])/100))} <span class="h6 mx-2">${product['discount']}% off</span>` : ''}
-                    </h5>
-                </div>
-            </a>
-        </form>
-    </div>
-</div>
-
-                            `;
-                            $('#product-list').append(productHTML);
+                            <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo 'data'?>${product['categoriesId']}">
+                                <div class="featured__item">
+                                    <!-- Wrap the cart icon in a form -->
+                                    <form action="admin/action/cat_cookies.php" method="POST">
+                                        <a href="shop-details.php?id=${product['id']}" style="width:1px; height: 1px;">
+                                            <div class="featured__item__pic set-bg" data-setbg="admin/productimages/${product['skuId']}/${product['skuId']}1.png">
+                                                <img src="admin/productimages/${product['skuId']}/${product['skuId']}1.png" alt="">
+                                                <ul class="featured__item__pic__hover">
+                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                    <li>
+                                                        <button type="submit" style="background: transparent; border: none" name="add_to_cart" value="1">
+                                                            <a><i class="fa fa-shopping-cart"></i></a>
+                                                        </button>
+                                                        <input type="hidden" name="product_id" value="${product['id']}">
+                                                        <input type="hidden" name="product_name" value="${product['productName']}">
+                                                        <input type="hidden" name="product_price" value="${product['price']}">
+                                                        <input type="hidden" name="product_sku" value="${product['skuId']}">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="featured__item__text">
+                                                <h6><a href="#">${product['productName']}</a></h6>
+                                                <h5>&#8377;
+                                                    ${product['discount'] > 0 ? `<span style="text-decoration: line-through;">${product['price']}</span>` : `${product['price']}`}
+                                                    ${product['discount'] > 0 ? `${Math.floor(product['price'] - ((product['price'] * product['discount'])/100))} <span class="h6 mx-2">${product['discount']}% off</span>` : ''}
+                                                </h5>
+                                            </div>
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        `;
+                            $('#product-list').append(productHTML); // Append new products to the list
                         });
-                        page++;  // Increment page number for next load
+                        page++; // Increment page number for next load
                     } else {
-                        $(window).off('scroll');  // Disable infinite scroll if no products
+                        $(window).off('scroll'); // Disable infinite scroll if no products
                     }
+                    isLoading = false; // Set loading flag to false after request is done
                 },
                 error: function(xhr, status, error) {
                     console.error('AJAX Error: ', error);
-                    // console.error('AJAX Error: ', status);
-                    // console.error('AJAX Error: ', xhr);
+                    isLoading = false; // Reset the loading flag in case of error
                 }
             });
         }
@@ -632,8 +637,9 @@
 
             // Infinite Scroll: Load more products when user scrolls
             $(window).scroll(function() {
+                // Check if user is near bottom of the page
                 if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-                    loadProducts();
+                    loadProducts(); // Load more products
                 }
             });
         });
