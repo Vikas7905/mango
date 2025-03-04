@@ -150,13 +150,13 @@
                 <div class="categories__slider owl-carousel">
                     <?php for ($i = 0; $i < sizeof($resultCat->records); $i++) { ?>
                         <div class="col-lg-3">
-                            <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
+                            <div class="categories__item set-bg" data-setbg="admin/img/category/<?php echo $resultCat->records[$i]->id ?>/<?php echo $resultCat->records[$i]->id ?>.png">
                                 <h5><a href="category.php?catId=<?php echo $resultCat->records[$i]->id ?>"><?php echo $resultCat->records[$i]->name ?></a></h5>
                             </div>
                         </div>
                     <?php } ?>
 
-                    <div class="col-lg-3">
+                    <!-- <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
                             <h5><a href="#">Fresh Fruit</a></h5>
                         </div>
@@ -180,7 +180,7 @@
                         <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
                             <h5><a href="#">drink fruits</a></h5>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -199,7 +199,7 @@
                         <ul>
                             <li class="active" data-filter="*">All</li>
                             <?php for ($i = 0; $i < sizeof($resultCat->records); $i++) { ?>
-                                <li data-filter=".<?php echo "data". $resultCat->records[$i]->id ?>"><?php echo $resultCat->records[$i]->name ?></li>
+                                <li data-filter=".<?php echo "data-" . $resultCat->records[$i]->id ?>"><?php echo $resultCat->records[$i]->name ?></li>
                             <?php } ?>
                             <!-- <li class="active" data-filter="*">All</li> -->
                             <!-- <li data-filter=".oranges">Oranges</li>
@@ -211,133 +211,13 @@
                 </div>
             </div>
             <div class="row featured__filter" id="product-list">
-                <!-- <div id=""></div> -->
-                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                    <div class="featured__item">
-                            <a href="shop-details.php">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                    </a>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                    <div class="featured__item">
-                            <a href="shop-details.php">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-3.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                    </a>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                    <div class="featured__item">
-                            <a href="shop-details.php">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-4.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                    </a>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                            <a href="shop-details.php">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-5.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                    </a>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                    <div class="featured__item">
-                            <a href="shop-details.php">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-6.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                    </a>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                            <a href="shop-details.php">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-7.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                    </a>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                    <div class="featured__item">
-                            <a href="shop-details.php">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-8.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                    </a>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
     <!-- Featured Section End -->
 
     <!-- Banner Begin -->
-    <div class="banner">
+    <div class="banner mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -356,7 +236,7 @@
     <!-- Banner End -->
 
     <!-- Latest Product Section Begin -->
-    <section class="latest-product spad">
+    <!-- <section class="latest-product spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6">
@@ -556,7 +436,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Latest Product Section End -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -571,7 +451,7 @@
             isLoading = true; // Set loading flag to true
 
             $.ajax({
-                url: '<?php echo $URL?>product/readProduct.php', // API to get products
+                url: '<?php echo $URL ?>product/readProduct.php', // API to get products
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -579,42 +459,47 @@
                     catId: ""
                 }),
                 success: function(response) {
-                    console.log(response);
+                    console.log(response.records);
 
                     if (response.records && response.records.length > 0) {
                         response.records.forEach(product => {
+                            console.log(product);
                             const productHTML = `
-                            <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo 'data'?>${product['categoriesId']}">
-                                <div class="featured__item">
-                                    <!-- Wrap the cart icon in a form -->
-                                    <form action="admin/action/cat_cookies.php" method="POST">
-                                        <a href="shop-details.php?id=${product['id']}" style="width:1px; height: 1px;">
-                                            <div class="featured__item__pic set-bg" data-setbg="admin/productimages/${product['skuId']}/${product['skuId']}1.png">
-                                                <img src="admin/productimages/${product['skuId']}/${product['skuId']}1.png" alt="">
-                                                <ul class="featured__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li>
-                                                        <button type="submit" style="background: transparent; border: none" name="add_to_cart" value="1">
-                                                            <a><i class="fa fa-shopping-cart"></i></a>
-                                                        </button>
-                                                        <input type="hidden" name="product_id" value="${product['id']}">
-                                                        <input type="hidden" name="product_name" value="${product['productName']}">
-                                                        <input type="hidden" name="product_price" value="${product['price']}">
-                                                        <input type="hidden" name="product_sku" value="${product['skuId']}">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="featured__item__text">
-                                                <h6><a href="#">${product['productName']}</a></h6>
-                                                <h5>&#8377;
-                                                    ${product['discount'] > 0 ? `<span style="text-decoration: line-through;">${product['price']}</span>` : `${product['price']}`}
-                                                    ${product['discount'] > 0 ? `${Math.floor(product['price'] - ((product['price'] * product['discount'])/100))} <span class="h6 mx-2">${product['discount']}% off</span>` : ''}
-                                                </h5>
-                                            </div>
-                                        </a>
-                                    </form>
-                                </div>
-                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mix data-${product['categoriesId']}">
+    <div class="featured__item">
+        <form action="admin/action/cat_cookies.php" method="POST">
+            <a href="shop-details.php?id=${product['id']}" style="width:1px; height: 1px;">
+                <div class="featured__item__pic set-bg" data-setbg="admin/productimages/${product['skuId']}/${product['skuId']}1.png">
+                    <img src="admin/productimages/${product['skuId']}/${product['skuId']}1.png" alt="">
+                    <ul class="featured__item__pic__hover">
+                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                        <li>
+                            <button type="submit" style="background: transparent; border: none" name="add_to_cart" value="1">
+                                <a><i class="fa fa-shopping-cart"></i></a>
+                            </button>
+                            <input type="hidden" name="pid" value="${product['id']}">
+                            <input type="hidden" name="pName" value="${product['productName']}">
+                            <input type="hidden" name="pPrice" value="${product['price']}">
+                            <input type="hidden" name="pSkuId" value="${product['skuId']}">
+                            <input type="hidden" name="pDiscount" value="${product['discount']}">
+                            <input type="hidden" name="pQuantity" value="1">
+                            <input type="hidden" name="pCatId" value="${product['categoriesId']}">
+                        </li>
+                    </ul>
+                </div>
+                <div class="featured__item__text">
+                    <h6><a href="#">${product['productName']}</a></h6>
+                    <h5>&#8377;
+                        ${product['discount'] > 0 ? `<span style="text-decoration: line-through;">${product['price']}</span>` : `${product['price']}`}
+                        ${product['discount'] > 0 ? `${Math.floor(product['price'] - ((product['price'] * product['discount']) / 100))} <span class="h6 mx-2">${product['discount']}% off</span>` : ''}
+                    </h5>
+                </div>
+            </a>
+        </form>
+    </div>
+</div>
+
+
                         `;
                             $('#product-list').append(productHTML); // Append new products to the list
                         });

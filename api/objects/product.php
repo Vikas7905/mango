@@ -221,7 +221,7 @@ class Product
 
 
 
-    public function readProduct($limit, $offset, $catId, $sort, $search)
+    public function readProduct($limit, $offset, $catId, $sort, $search, $read)
     {
         if($catId != ""){
 
@@ -232,7 +232,7 @@ class Product
              $this->productskuid   as b ON b.skuid=a.skuid JOIN 
              $this->categories  as c ON c.id=a.categoriesId where a.categoriesId=:catId LIMIT 10";
 
-        }else if($search !=""){
+        }else if($search != ""){
             //Read searched data
             $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
             b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
@@ -289,7 +289,7 @@ class Product
             }
           
         }
-        else if($limit !=""){
+        else if($limit !="" && $read != "ALL"){
             // read product for index page limit 5 
             $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
             b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 

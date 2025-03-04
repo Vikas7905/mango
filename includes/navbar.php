@@ -11,9 +11,34 @@
     <div class="humberger__menu__cart">
         <ul>
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span><?php echo isset($_COOKIE['cart']) ? $_COOKIE['cart'] : 0 ?></span></a></li>
+            <li><ahref="shopping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php
+                                                                                    $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : [];
+                                                                                    echo count($cart);
+                                                                                    ?></span></a></li>
+
         </ul>
-        <div class="header__cart__price">item: <span>&#8377; 0</span></div>
+        <?php
+        // Fetch cart data from cookie
+        $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : [];
+
+        $totalDiscountedPrice = 0; // Initialize total discounted price
+
+        if (!empty($cart)) {
+            foreach ($cart as $item) {
+                // Get the discounted price and quantity for each item
+                $productPrice = $item['discountedPrice']; // Discounted price
+                $quantity = $item['quantity']; // Quantity of the product
+
+                // Calculate total for this item
+                $totalDiscountedPrice += $productPrice * $quantity;
+            }
+
+            // Now $totalDiscountedPrice contains the sum of discounted prices for all items in the cart
+            echo '<div class="header__cart__price">item: <span>&#8377;' . number_format($totalDiscountedPrice, 2) . '</span></div>';
+        } else {
+            echo '<div class="header__cart__price">item: <span>&#8377;' . $totalDiscountedPrice . '</span></div>';
+        }
+        ?>
     </div>
     <div class="humberger__menu__widget">
         <!-- <div class="header__top__right__language">
@@ -26,9 +51,22 @@
                 </ul> 
             </div> -->
         <div class="header__top__right__auth">
-            <?php echo isset($_SESSION["name"]) ? '<i class="fa fa-user"></i>' . $_SESSION['name'] . '' : '<a href="login.php"><i class="fa fa-user"></i> Login</a>'; ?>
-
+            <?php if (isset($_SESSION["name"])): ?>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i> <?php echo $_SESSION['name']; ?>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="profile.php">My Profile</a>
+                        <a class="dropdown-item" href="orders.php">My Orders</a>
+                        <a class="dropdown-item" href="logout.php">Logout</a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <a href="login.php"><i class="fa fa-user"></i> Login</a>
+            <?php endif; ?>
         </div>
+
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
@@ -93,7 +131,20 @@
                                 </ul>
                             </div> -->
                         <div class="header__top__right__auth">
-                            <?php echo isset($_SESSION["name"]) ? '<i class="fa fa-user"></i> &nbsp;' . $_SESSION['name'] . '' : '<a href="login.php"><i class="fa fa-user"></i> Login</a>'; ?>
+                            <?php if (isset($_SESSION["name"])): ?>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user"></i> <?php echo $_SESSION['name']; ?>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="changePassword.php">Change Password</a>
+                                        <a class="dropdown-item" href="orders.php">My Orders</a>
+                                        <a class="dropdown-item" href="logout.php">Logout</a>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -130,7 +181,7 @@
 
                     <div class="header__search">
                         <form action="shop-grid.php" method="get" class="d-flex align-items-center">
-                            <input type="text" name="search" placeholder="Search products..." class="form-control search-input">
+                            <input type="text" name="search" placeholder="Search products..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : "" ?>" class="form-control search-input">
                             <button type="submit" class="btn btn-outline-secondary search-btn">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -144,9 +195,35 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="shoping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo isset($_COOKIE['cart']) ? $_COOKIE['cart'] : 0 ?></span></a></li>
+                        <li><a href="shoping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php
+                                                                                                $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : [];
+                                                                                                echo count($cart);
+                                                                                                ?></span></a></li>
                     </ul>
-                    <div class="header__cart__price">item: <span>&#8377; 0</span></div>
+                    <?php
+                    // Fetch cart data from cookie
+                    $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : [];
+
+                    $totalDiscountedPrice = 0; // Initialize total discounted price
+
+                    if (!empty($cart)) {
+                        foreach ($cart as $item) {
+                            // Get the discounted price and quantity for each item
+                            $productPrice = $item['discountedPrice']; // Discounted price
+                            $quantity = $item['quantity']; // Quantity of the product
+
+                            // Calculate total for this item
+                            $totalDiscountedPrice += $productPrice * $quantity;
+                        }
+
+                        // Now $totalDiscountedPrice contains the sum of discounted prices for all items in the cart
+                        echo '<div class="header__cart__price">item: <span>&#8377;' . number_format($totalDiscountedPrice, 2) . '</span></div>';
+                    } else {
+                        echo '<div class="header__cart__price">item: <span>&#8377;' . $totalDiscountedPrice . '</span></div>';
+                    }
+                    ?>
+
+
                 </div>
             </div>
         </div>
@@ -156,3 +233,4 @@
     </div>
 </header>
 <!-- Header Section End -->
+

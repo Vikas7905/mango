@@ -1,6 +1,7 @@
 <?php include './includes/header.php' ?>
+
 <body>
-  <?php  include './includes/navbar.php' ?>
+    <?php include './includes/navbar.php' ?>
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb2.png">
@@ -21,11 +22,36 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Shoping Cart Section Begin -->
+    <?php
+
+
+    // update cart code here
+
+    // Fetch cart data from cookie
+    //    $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : [];
+
+    //     // Check if form is submitted to update the cart
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quantity'])) {
+    //         foreach ($_POST['quantity'] as $index => $quantity) {
+    //             if (isset($cart[$index])) {
+    //                 // Update the quantity in the cart
+    //                 $cart[$index]['quantity'] = max(1, (int)$quantity); // Ensure the quantity is at least 1
+    //             }
+    //         }
+
+    //         // Update the cookie with the new cart
+    //         setcookie('user_cart', json_encode($cart), time() + (86400 * 30), "/");
+    //     }
+    // print_r($_COOKIE['user_cart']);
+    ?>
+
     <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
+                        <!-- Form to update the cart -->
+
                         <table>
                             <thead>
                                 <tr>
@@ -37,83 +63,79 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $55.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $110.00
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-2.jpg" alt="">
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-3.jpg" alt="">
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
+                                <?php
+                                if (!empty($cart)) {
+                                    foreach ($cart as $index => $item) {
+                                        // print_r($item);
+                                        $productName = $item['productName'];
+                                        $pId = $item['pid'];
+                                        $price = $item['price'];
+                                        $skuId = $item['skuId'];
+                                        $catId = $item['catId'];
+                                        $productPrice = $item['discountedPrice'];
+                                        $quantity = $item['quantity'];
+                                        $total = $productPrice * $quantity;
+                                        $productImage = "admin/productimages/{$item['skuId']}/{$item['skuId']}1.png"; // Assuming the image path is correct
+                                ?>
+                                        <tr>
+                                            <form action="admin/action/cat_cookies.php" method="POST">
+                                                <td class="shoping__cart__item">
+                                                    <img src="<?php echo $productImage; ?>" alt="Product Image" class="img-fluid col-12 col-sm-6 col-md-4 col-lg-3">
+                                                    <h5><?php echo $productName; ?></h5>
+                                                    <input type="hidden" name="pid" value="<?php echo $pId ?>">
+                                                    <input type="hidden" name="pName" value="<?php echo $productName; ?>">
+                                                    <input type="hidden" name="pPrice" value="<?php echo $productPrice; ?>">
+                                                    <input type="hidden" name="pSkuId" value="<?php echo $skuId; ?>">
+                                                    <input type="hidden" name="pDiscount" value="<?php echo $productPrice; ?>">
+                                                    <!-- <input type="hidden" name="pQuantity" value="1"> -->
+                                                    <input type="hidden" name="pCatId" value="<?php echo $catId; ?>">
+                                                </td>
+                                                <td class="shoping__cart__price">
+                                                    ₹<?php echo number_format($productPrice, 2); ?>
+                                                </td>
+                                                <td class="shoping__cart__quantity">
+                                                    <div class="quantity">
+                                                        <div class="pro-qty">
+                                                            <!-- The quantity is now part of the form to submit on change -->
+                                                            <input type="number" name="pQuantity" value="<?php echo $quantity; ?>" min="1">
+
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="shoping__cart__total">
+                                                    ₹<?php echo number_format($total, 2); ?>
+                                                </td>
+                                                <td class="shoping__cart__item__close">
+                                                    <button type="submit" class="btn btn-success" name="add_to_cart" value="1">
+                                                        <i class="fa fa-refresh"></i>
+                                                    </button>
+                                                    <a href="admin/action/cartRemove.php?pid=<?php echo $item['pid']; ?>" class="icon_close"></a>
+                                                </td>
+                                                <div class="col-md-12 text-right">
+
+                                                </div>
+                                            </form>
+                                        </tr>
+                                <?php
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='5' class='text-center'>No items in your cart.</td></tr>";
+                                }
+                                ?>
                             </tbody>
                         </table>
+
+                        <!-- Update Cart Button -->
+
+
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Upadate Cart</a>
+                        <a href="shop-grid.php" class="primary-btn">CONTINUE SHOPPING</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -131,15 +153,26 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <?php
+                            $subtotal = 0;
+                            foreach ($cart as $item) {
+                                $subtotal += $item['discountedPrice'] * $item['quantity'];
+                            }
+                            $totalAmount = $subtotal; // You can add tax, shipping, etc. if needed
+                            ?>
+                            <li>Subtotal <span>₹<?php echo number_format($subtotal, 2); ?></span></li>
+                            <li>Total <span>₹<?php echo number_format($totalAmount, 2); ?></span></li>
                         </ul>
-                        <a href="checkout.php" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <?php $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : []; ?>
+                        <a href="<?php echo count($cart)>0 ? 'checkout.php' : 'shop-grid.php' ?>" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+
     <!-- Shoping Cart Section End -->
 
-   <?php  include './includes/footer.php' ?>
+    <?php include './includes/footer.php' ?>

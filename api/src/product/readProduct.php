@@ -15,13 +15,14 @@ $data = json_decode(file_get_contents("php://input"));
 $catId = isset($data->catId) ? $data->catId : "";
 $page = isset($data->page) ? $data->page : 1;
 $sort = isset($data->sort) ? $data->sort : "";
+$read = isset($data->read) ? $data->read : "";
 $search = isset($data->search) ? $data->search : "";
 $limit = 5; // Fetch 5 products per request
 $offset = ($page - 1) * $limit;
 
 try {
     // Fetch products from the database with pagination
-    $stmt = $read_product->readProduct($limit, $offset, $catId, $sort, $search);
+    $stmt = $read_product->readProduct($limit, $offset, $catId, $sort, $search, $read);
     $num = $stmt->rowCount();
 
     if ($num > 0) {
