@@ -38,7 +38,7 @@ if ($read_users->email!="" && $read_users->password) {
                 $pass = $read_users->password;
                 if ($pass === $password) {
                     $secret_key = $SECRET_KEY;
-                    $issuer_claim = "ONLINE_SABJI_MANDI"; // this can be the servername
+                    $issuer_claim = "GAURI_AAM_WALA"; // this can be the servername
                     $audience_claim = "ALL";
                     $issuedat_claim = time(); // issued at
                     $notbefore_claim = $issuedat_claim ; //not before in seconds

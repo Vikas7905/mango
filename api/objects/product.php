@@ -127,7 +127,7 @@ class Product
         else if ($this->extra != "") {
 
             $this->extra = htmlspecialchars(strip_tags(trim($this->extra)));
-$searchTerm =  '%' . $this->extra . '%';;
+            $searchTerm =  '%' . $this->extra . '%';
             $stmt->bindParam(":search",$searchTerm );
 
         }
@@ -221,25 +221,87 @@ $searchTerm =  '%' . $this->extra . '%';;
 
 
 
-    public function readProduct($limit, $offset, $catId)
+    public function readProduct($limit, $offset, $catId, $sort, $search, $read)
     {
         if($catId != ""){
+
+            //read product by category
              $query = "Select a.name as productName,a.id, c.name, a.categoriesId,a.description,b.quantity,b.price ,a.id
                 ,a.createdOn,a.image,a.sellerId, a.skuId,a.price,a.discount,a.shippingCharge from 
              $this->products   as a INNER JOIN 
              $this->productskuid   as b ON b.skuid=a.skuid JOIN 
              $this->categories  as c ON c.id=a.categoriesId where a.categoriesId=:catId LIMIT 10";
 
-        }else if($limit !=""){
+        }else if($search != ""){
+            //Read searched data
+            $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
+            b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
+            a.price, a.discount, a.shippingCharge 
+            FROM $this->products as a 
+            INNER JOIN $this->productskuid as b ON b.skuid = a.skuid 
+            JOIN $this->categories as c ON c.id = a.categoriesId WHERE a.name LIKE :search";
+        }
+        else if($sort != ""){
+            // read product by sort method like price low to high , high to low, a to z, z to a
+            switch ($sort) {
+                case 'name_desc':
+                    $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
+                    b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
+                    a.price, a.discount, a.shippingCharge 
+                    FROM $this->products as a 
+                    INNER JOIN $this->productskuid as b ON b.skuid = a.skuid 
+                    JOIN $this->categories as c ON c.id = a.categoriesId order by a.name desc";
+                    break;
+                case 'name_asc':
+                    $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
+                    b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
+                    a.price, a.discount, a.shippingCharge 
+                    FROM $this->products as a 
+                    INNER JOIN $this->productskuid as b ON b.skuid = a.skuid 
+                    JOIN $this->categories as c ON c.id = a.categoriesId order by a.name ASC";
+                    break;
+                
+                case 'price_asc':
+                    $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
+                    b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
+                    a.price, a.discount, a.shippingCharge 
+                    FROM $this->products as a 
+                    INNER JOIN $this->productskuid as b ON b.skuid = a.skuid 
+                    JOIN $this->categories as c ON c.id = a.categoriesId order by b.price ASC";
+                    break;
+                case 'price_desc':
+                    $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
+                    b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
+                    a.price, a.discount, a.shippingCharge 
+                    FROM $this->products as a 
+                    INNER JOIN $this->productskuid as b ON b.skuid = a.skuid 
+                    JOIN $this->categories as c ON c.id = a.categoriesId order by b.price desc";
+                    break;
+                default:
+                $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
+                b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
+                a.price, a.discount, a.shippingCharge 
+                FROM $this->products as a 
+                INNER JOIN $this->productskuid as b ON b.skuid = a.skuid 
+                JOIN $this->categories as c ON c.id = a.categoriesId 
+                ";
+                break;
+            }
+          
+        }
+        else if($limit !="" && $read != "ALL"){
+            // read product for index page limit 5 
             $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
             b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
             a.price, a.discount, a.shippingCharge 
             FROM $this->products as a 
             INNER JOIN $this->productskuid as b ON b.skuid = a.skuid 
             JOIN $this->categories as c ON c.id = a.categoriesId 
-            LIMIT :limit OFFSET :offset";
+            LIMIT $limit OFFSET $offset";
         }
+       
         else{
+            // default read all product without any limitation
             $query = "SELECT a.name as productName, a.id, c.name, a.categoriesId, a.description, 
             b.quantity, b.price, a.id, a.createdOn, a.image, a.sellerId, a.skuId, 
             a.price, a.discount, a.shippingCharge 
@@ -259,13 +321,12 @@ $searchTerm =  '%' . $this->extra . '%';;
 
         if($catId != ""){
             $stmt->bindParam(':catId', $catId, PDO::PARAM_INT);
-        } 
-       if($catId == ""){
-        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-       }
-        // $stmt->bindParam(":productType", $this->productType);
-
+        }
+        if ($search != "") {
+            $searchTerm = '%' . $search . '%';
+            $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+        }
+        
        
         $stmt->execute();
         return $stmt;

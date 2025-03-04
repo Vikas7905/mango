@@ -1,100 +1,54 @@
 <?php
 session_start();
-if (isset($_POST['pid']) && isset($_POST['condition']) && $_POST['condition'] == "add") {
-  $pid = $_POST['pid'];
-  $pname = $_POST['pname'];
-  $productSkuid = $_POST["pSkuid"];
-  $quantity = $_POST['quantity'];
-  $price = $_POST['price'];
-  $itemTotal = $_POST['itemTotal'];
-  $subTotal = $_POST['subTotal'];
-  $tax = $_POST['tax'];
-  $totalAmt = $_POST['totalAmt'];
-  $discount = $_POST['discount'];
-  $shipping = $_POST['shipping'];
-  $cgst = $_POST["cgst"];
-  $sgst = $_POST["sgst"];
-  $seller = $_POST["sellerName"];
 
-  $cData = array(
-    "pid" => $pid,
-    "pSkuid" => $productSkuid,
-    "productName" => $pname,
-    "quantity" => $quantity,
-    "price" => $price,
-    "itemTotal" => $itemTotal,
-    "subTotal" => $subTotal,
-    "tax" => $tax,
-    "totalAmount" => $totalAmt,
-    "shipping" => $shipping,
-    "discount" => $discount,
-    "sellerName" => $seller,
-    "sellerId" => $_POST['sellerId'],
-    "catId" => $_POST['catId'],
-    "sgst" => $sgst,
-    "cgst" => $cgst
-  );
-  addUpdateItem($pid, $cData);
+// Check if the 'add_to_cart' button was clicked
+if (isset($_POST['add_to_cart']) && $_POST['add_to_cart'] == "1") {
+    // Retrieve product data from the form
+    $pid = $_POST['pid'];
+    $pName = $_POST['pName'];
+    $pPrice = $_POST['pPrice'];
+    $pSkuId = $_POST['pSkuId'];
+    $pDiscount = $_POST['pDiscount'];
+    $pQuantity = $_POST['pQuantity'];
+    $pCatId = $_POST['pCatId'];
+    $discountPrice = ($pPrice * $pDiscount) / 100;
+    $discountedPrice = floor($pPrice - $discountPrice);
 
-} else if (isset($_POST) && isset($_POST['condition']) && $_POST['condition'] == "remove") {
-      $pid = $_POST['pid'];
-  removeItem($pid);
- 
-} 
+    // Prepare the product data to be stored in the cart
+    $product = array(
+        "pid" => $pid,
+        "productName" => $pName,
+        "price" => $pPrice,
+        "skuId" => $pSkuId,
+        "discount" => $pDiscount,
+        "quantity" => $pQuantity,
+        "catId" => $pCatId,
+        "discountedPrice" => $discountedPrice
+    );
+    // print_r($product);
+    // Check if the user already has a cart in the cookies
+    $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : [];
 
-// Step 1: Adding items to cart
-function addUpdateItem($pid, $data)
-{
-  $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : 0;
-  $result = searchUserByName($cart, $pid);
-
-  if ($result != "Empty" && $result != null) {
-
-    array_push($result, $data);
-    setcookie('user_cart', json_encode($result), time() + (86400 * 30), "/"); // Cookie valid for 30 days
-    $_SESSION['cart']=$_COOKIE['user_cart'];
-  
-  } else {
-    $cart = ($result == "Empty") ? [] : $result;
-    $cart[] = $data;
-    setcookie('user_cart', json_encode($cart), time() + (86400 * 30), "/"); // Cookie valid for 30 days
-    $_SESSION['cart']=$_COOKIE['user_cart'];
-  }
-}
-
-function removeItem($pid)
-{
-
-  $cart = isset($_COOKIE['user_cart']) ? json_decode($_COOKIE['user_cart'], true) : 0;
-
-$newCart=array();
-  foreach ($cart as $index => $order) {
-    if ($order['pid'] === $pid) {
+    // Check if the product already exists in the cart, and update the quantity if it does
+    $found = false;
+    foreach ($cart as &$item) {
+        if ($item['pid'] == $pid) {
+            $item['quantity'] = $pQuantity; // Update the quantity to the new value
+            $found = true;
+            break;
+        }
     }
-    else{
-       array_push($newCart, $order); 
+
+    // If the product is not found in the cart, add it to the cart
+    if (!$found) {
+        $cart[] = $product; // Add the product if it's not in the cart
     }
-    
-    setcookie('user_cart', json_encode($newCart), time() + (86400 * 30), "/"); // Cookie valid for 30 days
-    $_SESSION['cart']=$_COOKIE['user_cart'];
-  }
 
+    // Store the updated cart in the cookie (valid for 30 days)
+    setcookie('user_cart', json_encode($cart), time() + (86400 * 30), "/");
 
+    // Redirect to the product page or a cart page after adding to cart
+    header("Location: " . $_SERVER['HTTP_REFERER']);  // Redirect back to the previous page (or customize the URL as needed)
+    exit;
 }
-
-function searchUserByName($orders, $pid)
-{
-  if (sizeof($orders) > 0) {
-    foreach ($orders as $index => $order) {
-
-      if ($order['pid'] == $pid) {
-        unset($orders[$index]);
-        return (sizeof($orders) > 0) ? $orders : "Empty";
-      }
-    }
-    return $orders;
-  }
-  return null; // Return null if the user is not found
-}
-
 ?>

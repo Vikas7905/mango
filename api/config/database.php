@@ -17,6 +17,13 @@ class Database{
     // public $conn;
 
 
+    // private $host = "localhost";
+    // private $db_name = "glintqnj_gauriaam";
+    // private $username = "glintqnj_gauriaam";
+    // private $password = "12qw!@QW2024";
+    // public $conn;
+
+
     private $host = "localhost";
     private $db_name = "mangodb";
     private $username = "root";
