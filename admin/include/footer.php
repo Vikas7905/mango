@@ -3,6 +3,6 @@
 		<div class="container">
 			 
 
-			<b class="copyright">&copy; 2024 shivammangoshop.com </b> All rights reserved.
+			<b class="copyright">&copy; 2025 gauriaamwala.com </b> All rights reserved.
 		</div>
 	</div>

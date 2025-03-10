@@ -23,14 +23,14 @@
 				</a>
 
 				<a class="brand" href="index.php">
-				shivammangoshop.com | Admin
+				SHIVAM MANGO SHOP
 				</a>
 
 				<div class="nav-collapse collapse navbar-inverse-collapse">
 
 					<ul class="nav pull-right">
 
-						<li><a href="http://localhost/shivammangoshop/">
+						<li><a href="../index.php">
 								Back to Portal
 
 							</a></li>

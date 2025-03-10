@@ -102,10 +102,10 @@
         <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
           <div class="login-form">
             <h3>Change Password</h3>
-            <form action="admin/action/login_post.php" method="POST">
+            <form action="admin/action/change_password_post.php" method="POST">
               <div class="input-group">
                 <label for="username">New Password</label>
-                <input type="text" id="username" name="email" required>
+                <input type="text" id="username" name="password" required>
               </div>
               <!-- <div class="input-group">
                 <label for="password">Password</label>

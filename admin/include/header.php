@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php // session_start(); ?>
 <div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -7,7 +7,7 @@
 				</a>
 
 			  	<a class="brand" href="#">
-				  shivammangoshop.com | Admin
+				  SHIVAM MANGO SHOP
 			  	</a>
 
 				<div class="nav-collapse collapse navbar-inverse-collapse">

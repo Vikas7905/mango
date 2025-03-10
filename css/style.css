@@ -3466,3 +3466,47 @@ ol {
 		font-size: 24px;
 	}
 }
+
+    /* *********************** UI CHANGES START ************************** */
+	.shopButton {
+		background: #6AB963;
+		color: white;
+		border: none;
+		margin-top: 20px;
+		padding: 4px;
+		font-size: 1rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		border-radius: 8px;
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	  }
+	  
+	  .shopButton::before {
+		content: '';
+		position: absolute;
+		top: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: linear-gradient(0deg, transparent, transparent 30%, rgba(205, 226, 226, 0.3));
+		transform: rotate(-45deg);
+		transition: all 0.5s ease;
+		opacity: 0;
+	  }
+	  
+	  .shopButton:hover {
+		transform: scale(1.1);
+		box-shadow: 0 0 15px rgba(205, 226, 226, 0.3);
+	  }
+	  
+	  .shopButton:hover::before {
+		opacity: 1;
+		transform: rotate(-45deg) translateY(100%);
+	  }
+	  
+	/* *********************** UI CHANGES END ************************** */

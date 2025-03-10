@@ -2,7 +2,28 @@
         <div class="loader"></div>
     </div> -->
 <!-- Humberger Begin -->
-<?php session_start(); ?>
+
+<style>
+        /* Default image size (Laptop/large screens) */
+        .responsive-image {
+            width: 100%;
+        }
+
+        /* For smaller screens (Mobile devices) */
+        @media (max-width: 768px) {
+            .responsive-image {
+                width: 30%; /* Adjust the percentage or use specific px values */
+            }
+        }
+
+        /* For larger screens (e.g., laptops/desktops) */
+        @media (min-width: 769px) {
+            .responsive-image {
+                width: 50%; /* Adjust as needed */
+            }
+        }
+    </style>
+    <?php session_start(); ?>
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
@@ -51,10 +72,15 @@
                 </ul> 
             </div> -->
         <div class="header__top__right__auth">
-            <?php if (isset($_SESSION["name"])): ?>
+            <?php if (isset($_SESSION["name"]) || isset($_COOKIE['name'])): ?>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i> <?php echo $_SESSION['name']; ?>
+                        <i class="fa fa-user"></i> <?php
+                                                    $fullName = $_COOKIE['name'];
+                                                    $name = explode(" ", $fullName);
+                                                    echo $name[0];
+                                                    ?>
+
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="profile.php">My Profile</a>
@@ -80,7 +106,7 @@
                         <li><a href="./blog-details.php">Blog Details</a></li>
                     </ul>
                 </li> -->
-            <li><a href="./blog.php">Blog</a></li>
+            <!-- <li><a href="./blog.php">Blog</a></li> -->
             <li><a href="./contact.php">Contact</a></li>
         </ul>
     </nav>
@@ -108,7 +134,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> shivammangoshop@gmial.com</li>
+                            <li><i class="fa fa-envelope"></i> shivammangoshop@gmail.com</li>
                             <li>Free Shipping for all Order of 1000</li>
                         </ul>
                     </div>
@@ -131,10 +157,14 @@
                                 </ul>
                             </div> -->
                         <div class="header__top__right__auth">
-                            <?php if (isset($_SESSION["name"])): ?>
+                            <?php if (isset($_SESSION["name"]) || isset($_COOKIE['name'])): ?>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-user"></i> <?php echo $_SESSION['name']; ?>
+                                        <i class="fa fa-user"></i> <?php
+                                                                    $fullName = $_COOKIE['name'];
+                                                                    $name = explode(" ", $fullName);
+                                                                    echo $name[0];
+                                                                    ?>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="changePassword.php">Change Password</a>
@@ -155,7 +185,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a href="./index.php"><img src="img/log.png" alt="" style="width: 25%;"></a>
+                    <a href="./index.php"><img src="img/log.png" alt="" class="responsive-image"></a>
                 </div>
             </div>
             <div class="col-lg-5">
@@ -171,7 +201,7 @@
                                     <li><a href="./blog-details.php">Blog Details</a></li>
                                 </ul>
                             </li> -->
-                        <li><a href="./blog.php">Blog</a></li>
+                        <!-- <li><a href="./blog.php">Blog</a></li> -->
                         <li><a href="./contact.php">Contact</a></li>
                     </ul>
                 </nav>
@@ -233,4 +263,3 @@
     </div>
 </header>
 <!-- Header Section End -->
-

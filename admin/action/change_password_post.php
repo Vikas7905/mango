@@ -8,7 +8,7 @@ $password= $_POST["password"];
 //echo $decoded->data->email;
 $url = $URL."user/update_user_password.php";
 $data = array("password"=>$password, "email"=>$decoded->data->email);
-print_r($data);
+// print_r($data);
 $postdata = json_encode($data);
 $client = curl_init($url);
 curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
@@ -24,11 +24,11 @@ $result = (json_decode($response));
 if($result->message=="Update successfully"){
     
   
-  header('Location:../../changepassword.php?msg='.$result->message);
+  header('Location:../../changePassword.php?msg='.$result->message);
   $_SESSION['alert_msg']="Password Updated Succefully";
  } else
  {
   //echo "Bad";
-  header('Location:../../changepassword.php?msg='.$result->message);
+  header('Location:../../changePassword.php?msg='.$result->message);
  }
 ?>

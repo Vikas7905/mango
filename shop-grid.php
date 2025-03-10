@@ -367,24 +367,6 @@
                                         <div class="product__item">
                                             <div class="product__item__pic set-bg" data-setbg="">
                                                 <img src="admin/productimages/<?php echo $result->records[$i]->skuId; ?>/<?php echo $result->records[$i]->skuId; ?>1.png" alt="">
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <!-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-                                                    <li>
-                                                        <form action="./admin/action/cat_cookies.php" method="post">
-                                                            <button type="submit" style="background: transparent; border: none" name="add_to_cart" value="1">
-                                                                <a><i class="fa fa-shopping-cart"></i></a>
-                                                            </button>
-                                                            <input type="hidden" name="pid" value="<?php echo $result->records[$i]->id; ?>">
-                                                            <input type="hidden" name="pName" value="<?php echo $result->records[$i]->productName; ?>">
-                                                            <input type="hidden" name="pPrice" value="<?php echo $result->records[$i]->price; ?>">
-                                                            <input type="hidden" name="pSkuId" value="<?php echo $result->records[$i]->skuId; ?>">
-                                                            <input type="hidden" name="pDiscount" value="<?php echo $result->records[$i]->discount; ?>">
-                                                            <input type="hidden" name="pQuantity" value="1">
-                                                            <input type="hidden" name="pCatId" value="<?php echo $result->records[$i]->categoriesId; ?>">
-                                                        </form>
-                                                    </li>
-                                                </ul>
                                             </div>
                                             <div class="product__item__text">
                                                 <h6><a href="#"><?php echo $result->records[$i]->productName ?></a></h6>
@@ -400,6 +382,28 @@
                                                         : $result->records[$i]->price; // Show discounted price, else show original price
                                                     ?>
                                                 </h5>
+                                                <div class="col-12 d-flex justify-content-between">
+                                                    <form action="./admin/action/cat_cookies.php" method="post" class="d-flex col-6" style="margin: 0; padding:0;">
+                                                        <button type="submit" name="add_to_cart" value="1" class="shopButton col-12">Add to cart</button>
+                                                        <input type="hidden" name="pid" value="<?php echo $result->records[$i]->id; ?>">
+                                                        <input type="hidden" name="pName" value="<?php echo $result->records[$i]->productName; ?>">
+                                                        <input type="hidden" name="pPrice" value="<?php echo $result->records[$i]->price; ?>">
+                                                        <input type="hidden" name="pSkuId" value="<?php echo $result->records[$i]->skuId; ?>">
+                                                        <input type="hidden" name="pDiscount" value="<?php echo $result->records[$i]->discount; ?>">
+                                                        <input type="hidden" name="pQuantity" value="1">
+                                                        <input type="hidden" name="pCatId" value="<?php echo $result->records[$i]->categoriesId; ?>">
+                                                    </form>
+                                                    <form action="checkout.php" method="post" class="d-flex col-5" style="padding: 0px; margin:0px;">
+                                                        <button type="submit" class="shopButton col-12">Buy Now</button>
+                                                        <input type="hidden" name="pid" value="<?php echo $result->records[$i]->id; ?>">
+                                                        <input type="hidden" name="pName" value="<?php echo $result->records[$i]->productName; ?>">
+                                                        <input type="hidden" name="pPrice" value="<?php echo $result->records[$i]->price; ?>">
+                                                        <input type="hidden" name="pSkuId" value="<?php echo $result->records[$i]->skuId; ?>">
+                                                        <input type="hidden" name="pDiscount" value="<?php echo $result->records[$i]->discount; ?>">
+                                                        <input type="hidden" name="pQuantity" value="1">
+                                                        <input type="hidden" name="pCatId" value="<?php echo $result->records[$i]->categoriesId; ?>">
+                                                    </form>
+                                                </div>
 
                                             </div>
                                         </div>
@@ -417,7 +421,7 @@
 
                     </div>
 
-                        <!-- ************************** -->
+                    <!-- ************************** -->
                     <!-- Pagination  -->
                     <!-- <div class="product__pagination">
                         <a href="#">1</a>
@@ -426,7 +430,7 @@
                         <a href="#"><i class="fa fa-long-arrow-right"></i></a>
                     </div> -->
                     <!-- ********************* -->
-                     
+
                 </div>
             </div>
         </div>

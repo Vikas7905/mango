@@ -1,34 +1,34 @@
 <?php include './includes/header.php' ?>
+
 <body>
-  <?php  include './includes/navbar.php' ?>
+    <?php include './includes/navbar.php'; ?>
 
-  <?php
-  include 'constant.php';
-  include_once 'includes/curl_header_home.php';
-// nextpage.php
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    <?php
+    include 'constant.php';
+    include_once 'includes/curl_header_home.php';
+    // nextpage.php
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    $id = $_GET['id'];
+        $id = $_GET['id'];
 
-    $data = array("pid"=>$id, "crid"=>"", "spid"=>"", "sort"=>"", "pageSize"=>"", "filter"=>"", "extra"=>"");
-    $postdata = json_encode($data);
-    $url_id = $URL . "product/readProductById.php";
-    $readCurl = new CurlHome();
-    $response_all = $readCurl->createCurl($url_id, $postdata, 0, 5, 1);
-    // print_r($response_all);
-    $resultProduct = json_decode($response_all);
+        $data = array("pid" => $id, "crid" => "", "spid" => "", "sort" => "", "pageSize" => "", "filter" => "", "extra" => "");
+        $postdata = json_encode($data);
+        $url_id = $URL . "product/readProductById.php";
+        $readCurl = new CurlHome();
+        $response_all = $readCurl->createCurl($url_id, $postdata, 0, 5, 1);
+        // print_r($response_all);
+        $resultProduct = json_decode($response_all);
 
-    $cat = array("catId"=>$resultProduct->records[0]->categoriesId);
-    // print_r($cat);
-    $postcat = json_encode($cat);
-    $url_cat = $URL . "product/readProduct.php";
-    $readCurl = new CurlHome();
-    $response_cat = $readCurl->createCurl($url_cat, $postcat, 0, 5, 1);
-    // print_r($response_cat);
-    $resultCat = json_decode($response_cat);
-    
-}
-?>
+        $cat = array("catId" => $resultProduct->records[0]->categoriesId);
+        // print_r($cat);
+        $postcat = json_encode($cat);
+        $url_cat = $URL . "product/readProduct.php";
+        $readCurl = new CurlHome();
+        $response_cat = $readCurl->createCurl($url_cat, $postcat, 0, 5, 1);
+        // print_r($response_cat);
+        $resultCat = json_decode($response_cat);
+    }
+    ?>
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb2.png">
@@ -83,34 +83,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <span>(18 reviews)</span>
                         </div>
                         <div class="product__details__price">&#8377;<?php
-                                                $originalPrice = $resultProduct->records[0]->price;
-                                                $discountPercentage = $resultProduct->records[0]->discount;
-                                                
-                                                // Calculate discounted price
-                                                $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
+                                                                    $originalPrice = $resultProduct->records[0]->price;
+                                                                    $discountPercentage = $resultProduct->records[0]->discount;
 
-                                                // Show line-through only if there is a discount
-                                                if ($discountPercentage > 0) {
-                                                    echo '<span style="text-decoration: line-through;">' . $originalPrice . '</span> ';
-                                                }
-                                                echo floor($discountedPrice); 
-                                                if ($discountPercentage > 0){
-                                                    echo '<span class="h6 mx-2">' . $resultProduct->records[0]->discount . '% off</span>';
-                                                }
-                                                ?>
-                                                </div>
+                                                                    // Calculate discounted price
+                                                                    $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
+
+                                                                    // Show line-through only if there is a discount
+                                                                    if ($discountPercentage > 0) {
+                                                                        echo '<span style="text-decoration: line-through;">' . $originalPrice . '</span> ';
+                                                                    }
+                                                                    echo floor($discountedPrice);
+                                                                    if ($discountPercentage > 0) {
+                                                                        echo '<span class="h6 mx-2">' . $resultProduct->records[0]->discount . '% off</span>';
+                                                                    }
+                                                                    ?>
+                        </div>
                         <p><?php echo $resultProduct->records[0]->description ?></p>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
+                        <form action="admin/action/cat_cookies.php" method="post">
+                            <div class="product__details__quantity">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" name="pQuantity" value="1" min="1">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+
+                            <input type="hidden" name="pid" value="<?php echo $resultProduct->records[0]->pid ?>">
+                            <input type="hidden" name="pName" value="<?php echo $resultProduct->records[0]->productName; ?>">
+                            <input type="hidden" name="pPrice" value="<?php echo $resultProduct->records[0]->price; ?>">
+                            <input type="hidden" name="pSkuId" value="<?php echo $resultProduct->records[0]->skuId; ?>">
+                            <input type="hidden" name="pCatId" value="<?php echo $resultProduct->records[0]->categoriesId; ?>">
+                            <input type="hidden" name="pDiscount" value="<?php echo $resultProduct->records[0]->discount; ?>">
+
+                            <button class="primary-btn btn" name="add_to_cart" value="1">ADD TO CARD</button>
+                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        </form>
                         <ul>
-                            <li><b>Availability</b> <span>In Stock</span></li>
+                            <li><b>Availability</b> <?php if ($resultProduct->records[0]->discount > 0) {
+                                                        echo '<span>In Stock</span>';
+                                                    } else {
+                                                        echo '<span class="text-danger">Out Of Stock</span>';
+                                                    }
+                                                    ?></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
                             <li><b>Weight</b> <span>0.5 kg</span></li>
                             <!-- <li><b>Share on</b>
@@ -220,49 +235,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 </div>
             </div>
             <div class="row">
-                <?php for($i=0; $i<sizeof($resultCat->records); $i++){ ?>
+                <?php for ($i = 0; $i < sizeof($resultCat->records); $i++) { ?>
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <a href="shop-details.php?id=<?php echo $resultCat->records[$i]->id; ?>" style="width: 1px; height:1px;">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="">
-                                                <img src="admin/productimages/<?php echo $resultCat->records[$i]->skuId; ?>/<?php echo $resultCat->records[$i]->skuId; ?>1.png" alt="">
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <!-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-                                                    <li>  <form action="./admin/action/cat_cookies.php" method="post">
-                                                        <button type="submit" style="background: transparent; border: none" name="add_to_cart" value="1">
-                                                        <a><i class="fa fa-shopping-cart"></i></a>
-                                                        </button>
-                                                        <input type="hidden" name="pid" value="<?php echo $resultCat->records[$i]->id; ?>">
-                                                        <input type="hidden" name="pName" value="<?php echo $resultCat->records[$i]->productName; ?>">
-                                                        <input type="hidden" name="pPrice" value="<?php echo $resultCat->records[$i]->price; ?>">
-                                                        <input type="hidden" name="pSkuId" value="<?php echo $resultCat->records[$i]->skuId; ?>">
-                                                        <input type="hidden" name="pDiscount" value="<?php echo $resultCat->records[$i]->discount; ?>">
-                                                        <input type="hidden" name="pQuantity" value="1">
-                                                        <input type="hidden" name="pCatId" value="<?php echo $resultCat->records[$i]->categoriesId; ?>">
-                                                        </form>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#"><?php echo $resultCat->records[$i]->productName ?></a></h6>
-                                                <h5>
-                                                    &#8377;
-                                                    <?php
-                                                    echo ($resultCat->records[$i]->discount > 0)
-                                                        ? '<span style="text-decoration: line-through;">' . $resultCat->records[$i]->price . '</span> '
-                                                        : ''; // If discount exists, show the original price with strikethrough
-
-                                                    echo ($resultCat->records[$i]->discount > 0)
-                                                        ? floor($resultCat->records[$i]->price - (($resultCat->records[$i]->price * $resultCat->records[$i]->discount) / 100)) . ' <span class="h6 mx-2">' . $resultCat->records[$i]->discount . '% off</span>'
-                                                        : $resultCat->records[$i]->price; // Show discounted price, else show original price
-                                                    ?>
-                                                </h5>
-
-                                            </div>
-                                        </div>
-                                    </a>
+                        <a href="shop-details.php?id=<?php echo $resultCat->records[$i]->id; ?>" style="width: 1px; height:1px;">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="">
+                                    <img src="admin/productimages/<?php echo $resultCat->records[$i]->skuId; ?>/<?php echo $resultCat->records[$i]->skuId; ?>1.png" alt="">
                                 </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#"><?php echo $resultCat->records[$i]->productName ?></a></h6>
+                                    <h5>
+                                        &#8377;
+                                        <?php
+                                        echo ($resultCat->records[$i]->discount > 0)
+                                            ? '<span style="text-decoration: line-through;">' . $resultCat->records[$i]->price . '</span> '
+                                            : ''; // If discount exists, show the original price with strikethrough
+
+                                        echo ($resultCat->records[$i]->discount > 0)
+                                            ? floor($resultCat->records[$i]->price - (($resultCat->records[$i]->price * $resultCat->records[$i]->discount) / 100)) . ' <span class="h6 mx-2">' . $resultCat->records[$i]->discount . '% off</span>'
+                                            : $resultCat->records[$i]->price; // Show discounted price, else show original price
+                                        ?>
+                                    </h5>
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <form action="./admin/action/cat_cookies.php" method="post" class="d-flex col-6" style="margin: 0; padding:0;">
+                                            <button type="submit" name="add_to_cart" value="1" class="shopButton col-12">Add to cart</button>
+                                            <input type="hidden" name="pid" value="<?php echo $resultCat->records[$i]->id; ?>">
+                                            <input type="hidden" name="pName" value="<?php echo $resultCat->records[$i]->productName; ?>">
+                                            <input type="hidden" name="pPrice" value="<?php echo $resultCat->records[$i]->price; ?>">
+                                            <input type="hidden" name="pSkuId" value="<?php echo $resultCat->records[$i]->skuId; ?>">
+                                            <input type="hidden" name="pDiscount" value="<?php echo $resultCat->records[$i]->discount; ?>">
+                                            <input type="hidden" name="pQuantity" value="1">
+                                            <input type="hidden" name="pCatId" value="<?php echo $resultCat->records[$i]->categoriesId; ?>">
+                                        </form>
+                                        <form action="checkout.php" method="post" class="d-flex col-5" style="padding: 0px; margin:0px;">
+                                            <button type="submit" class="shopButton col-12">Buy Now</button>
+                                            <input type="hidden" name="pid" value="<?php echo $resultCat->records[$i]->id; ?>">
+                                            <input type="hidden" name="pName" value="<?php echo $resultCat->records[$i]->productName; ?>">
+                                            <input type="hidden" name="pPrice" value="<?php echo $resultCat->records[$i]->price; ?>">
+                                            <input type="hidden" name="pSkuId" value="<?php echo $resultCat->records[$i]->skuId; ?>">
+                                            <input type="hidden" name="pDiscount" value="<?php echo $resultCat->records[$i]->discount; ?>">
+                                            <input type="hidden" name="pQuantity" value="1">
+                                            <input type="hidden" name="pCatId" value="<?php echo $resultCat->records[$i]->categoriesId; ?>">
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 <?php } ?>
                 <!-- <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
@@ -298,4 +319,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </section>
     <!-- Related Product Section End -->
-<?php include './includes/footer.php' ?>
+    <?php include './includes/footer.php' ?>

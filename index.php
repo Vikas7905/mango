@@ -155,32 +155,6 @@
                             </div>
                         </div>
                     <?php } ?>
-
-                    <!-- <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -195,19 +169,23 @@
                     <div class="section-title">
                         <h2>Featured Product</h2>
                     </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <?php for ($i = 0; $i < sizeof($resultCat->records); $i++) { ?>
-                                <li data-filter=".<?php echo "data-" . $resultCat->records[$i]->id ?>"><?php echo $resultCat->records[$i]->name ?></li>
-                            <?php } ?>
-                            <!-- <li class="active" data-filter="*">All</li> -->
-                            <!-- <li data-filter=".oranges">Oranges</li>
+                    <!-- <div class="featured__controls"> -->
+                    <!-- <ul> -->
+                    <!-- <li class="active" data-filter="*">All</li> -->
+                    <?php // for ($i = 0; $i < sizeof($resultCat->records); $i++) { 
+                    ?>
+                    <!-- <li data-filter=".<?php // echo "data-" . $resultCat->records[$i]->id 
+                                            ?>"><?php // echo $resultCat->records[$i]->name 
+                                                ?></li> -->
+                    <?php // } 
+                    ?>
+                    <!-- <li class="active" data-filter="*">All</li> -->
+                    <!-- <li data-filter=".oranges">Oranges</li>
                             <li data-filter=".fresh-meat">Fresh Meat</li>
                             <li data-filter=".vegetables">Vegetables</li>
                             <li data-filter=".fastfood">Fastfood</li> -->
-                        </ul>
-                    </div>
+                    <!-- </ul> -->
+                    <!-- </div> -->
                 </div>
             </div>
             <div class="row featured__filter" id="product-list">
@@ -235,209 +213,7 @@
     </div>
     <!-- Banner End -->
 
-    <!-- Latest Product Section Begin -->
-    <!-- <section class="latest-product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Latest Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Top Rated Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Review Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- Latest Product Section End -->
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -466,33 +242,40 @@
                             console.log(product);
                             const productHTML = `
                             <div class="col-lg-3 col-md-4 col-sm-6 mix data-${product['categoriesId']}">
-    <div class="featured__item">
-        <form action="admin/action/cat_cookies.php" method="POST">
-            <a href="shop-details.php?id=${product['id']}" style="width:1px; height: 1px;">
-                <div class="featured__item__pic set-bg" data-setbg="admin/productimages/${product['skuId']}/${product['skuId']}1.png">
-                    <img src="admin/productimages/${product['skuId']}/${product['skuId']}1.png" alt="">
-                    <ul class="featured__item__pic__hover">
-                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                        <li>
-                            <button type="submit" style="background: transparent; border: none" name="add_to_cart" value="1">
-                                <a><i class="fa fa-shopping-cart"></i></a>
-                            </button>
-                            <input type="hidden" name="pid" value="${product['id']}">
-                            <input type="hidden" name="pName" value="${product['productName']}">
-                            <input type="hidden" name="pPrice" value="${product['price']}">
-                            <input type="hidden" name="pSkuId" value="${product['skuId']}">
-                            <input type="hidden" name="pDiscount" value="${product['discount']}">
-                            <input type="hidden" name="pQuantity" value="1">
-                            <input type="hidden" name="pCatId" value="${product['categoriesId']}">
-                        </li>
-                    </ul>
-                </div>
-                <div class="featured__item__text">
-                    <h6><a href="#">${product['productName']}</a></h6>
-                    <h5>&#8377;
-                        ${product['discount'] > 0 ? `<span style="text-decoration: line-through;">${product['price']}</span>` : `${product['price']}`}
-                        ${product['discount'] > 0 ? `${Math.floor(product['price'] - ((product['price'] * product['discount']) / 100))} <span class="h6 mx-2">${product['discount']}% off</span>` : ''}
-                    </h5>
+                                <div class="featured__item">
+                                    <form action="admin/action/cat_cookies.php" method="POST">
+                                        <a href="shop-details.php?id=${product['id']}" style="width:1px; height: 1px;">
+                                        <div class="featured__item__pic set-bg" data-setbg="admin/productimages/${product['skuId']}/${product['skuId']}1.png">
+                                        <img src="admin/productimages/${product['skuId']}/${product['skuId']}1.png" alt="" loading="lazy">
+                                </div>
+                            <div class="featured__item__text">
+                                <h6><a href="shop-details.php?id=${product['id']}">${product['productName']}</a></h6>
+                                <h5>&#8377;
+                                ${product['discount'] > 0 ? `<span style="text-decoration: line-through;">${product['price']}</span>` : `${product['price']}`}
+                                 ${product['discount'] > 0 ? `${Math.floor(product['price'] - ((product['price'] * product['discount']) / 100))} <span class="h6 mx-2">${product['discount']}% off</span>` : ''}
+                                </h5>
+                    <div class="col-12 d-flex justify-content-between">
+                            <form action="./admin/action/cat_cookies.php" method="post" class="d-flex col-6" style="margin: 0; padding:0;">
+                                    <button type="submit" name="add_to_cart" value="1" class="shopButton col-6">Add to cart</button>
+                                    <input type="hidden" name="pid" value="${product['id']}">
+                                    <input type="hidden" name="pName" value="${product['productName']}">
+                                     <input type="hidden" name="pPrice" value="${product['price']}">
+                                    <input type="hidden" name="pSkuId" value="${product['skuId']}">
+                                     <input type="hidden" name="pDiscount" value="${product['discount']}">
+                                     <input type="hidden" name="pQuantity" value="1">
+                                     <input type="hidden" name="pCatId" value="${product['categoriesId']}">
+                            </form>
+                            <form action="checkout.php" method="post" class="d-flex col-5" style="padding: 0px; margin:0px;">
+                                    <button type="submit" class="shopButton col-12">Buy Now</button>
+                                    <input type="hidden" name="pid" value="<?php echo $resultCat->records[$i]->id; ?>">
+                                    <input type="hidden" name="pName" value="<?php echo $resultCat->records[$i]->productName; ?>">
+                                    <input type="hidden" name="pPrice" value="<?php echo $resultCat->records[$i]->price; ?>">
+                                    <input type="hidden" name="pSkuId" value="<?php echo $resultCat->records[$i]->skuId; ?>">
+                                    <input type="hidden" name="pDiscount" value="<?php echo $resultCat->records[$i]->discount; ?>">
+                                    <input type="hidden" name="pQuantity" value="1">
+                                    <input type="hidden" name="pCatId" value="<?php echo $resultCat->records[$i]->categoriesId; ?>">
+                            </form>
+                    </div>
                 </div>
             </a>
         </form>

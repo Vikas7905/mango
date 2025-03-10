@@ -30,6 +30,18 @@ if ($result->message == "Successfull") {
             $_SESSION["JWT"] = $result->jwt;
             $_SESSION["phoneNo"] = $decoded->data->phoneNo;
             $_SESSION["name"] = $decoded->data->name;
+            
+            // Set session values as cookies with 30 minutes expiration
+            $cookieExpirationTime = time() + 1800; // 30 minutes from now
+            
+            // Set each session variable as a cookie
+            setcookie("JWT", $result->jwt, $cookieExpirationTime, "/", "", false, true);
+            setcookie("phoneNo", $decoded->data->phoneNo, $cookieExpirationTime, "/", "", false, true);
+            setcookie("name", $decoded->data->name, $cookieExpirationTime, "/", "", false, true);
+            
+            // If you need to store more session values, add them here
+            // Example: setcookie("someOtherSessionValue", $someValue, $cookieExpirationTime, "/", "", false, true);
+
             header('Location:../../index.php');
             exit;
         } else {
