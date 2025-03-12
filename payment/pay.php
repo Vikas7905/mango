@@ -1,20 +1,23 @@
 <?php
 session_start();
  ob_start();
-//  $_POST['postalCode'];
+     echo $_POST['village'];
+     echo $_POST['country'];
+     echo $_POST['pincode'];
+
 //  echo "seller".$_POST['sellerpincode'];
- if($_POST['address']==""){
+ if($_POST['village']==""){
      if($_POST['postalCode']!=$_POST['sellerpincode']){
-      header('Location:../checkout.php?messageid=Pincode is not Delivereble');
+      //header('Location:../checkout.php?messageid=Pincode is not Delivereble');
       //echo "pincode not match";
  }
 }
  else
  {
-$haystack = $_POST['address'];   
-$needle   = $_POST['sellerpincode'];
+$haystack = $_POST['village'];   
+$needle   = $_POST['pincode '];
 if(!str_contains($haystack, $needle)) {
-    header('Location:../checkout.php?messageid=Pincode is not Delivereble');
+    //header('Location:../checkout.php?messageid=Pincode is not Delivereble');
 }
 }
 
@@ -51,7 +54,6 @@ $_SESSION['user_address'] = isset($_POST['address']) ? $_POST['address'] : "";
 $_SESSION['user_notes'] = isset($_POST['notes']) ? $_POST['notes'] : "";
 $_SESSION['user_address_type'] = isset($_POST['listGroupRadios']) ? $_POST['listGroupRadios'] : "";
 $_SESSION['user_save_address'] = $saveAddr = isset($_POST['saveAddress']) ? $_POST['saveAddress'] : "";
-
 $pdo = new PDO($dsn, $username, $password);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // Create the Razorpay Order
@@ -65,7 +67,7 @@ $orderId = $_SESSION['user_order_id'] = "ORD_" . time() . rand(1000, 9999);
 foreach ($result as $index => $order) {
 
     $pid = trim($order["pid"]);
-   $catId = trim($order["catId"]);
+    $catId = trim($order["catId"]);
 
      $query1 = "Select a.name,a.id,a.categoriesId, a.subCategoryId,a.description,b.quantity,a.createdOn,a.image,
     a.sellerId,d.sellerName,a.skuId,a.price,a.shippingCharge,a.discount,c.sgst,c.cgst,a.adminCommision from products as a
@@ -99,7 +101,7 @@ foreach ($result as $index => $order) {
 
     } else {
 
-        header('Location:../cart.php?msg='.$counts.'&pid='.$pid );
+        //header('Location:../cart.php?msg='.$counts.'&pid='.$pid );
         break;
 
     }
