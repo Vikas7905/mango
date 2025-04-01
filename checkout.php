@@ -1,8 +1,13 @@
 <?php include './includes/header.php' ?>
+<?php
+if(isset($_COOKIE["user_cart"])) {
+    echo  $_COOKIE["user_cart"];
+} else {
+    echo "Cookie is not set!";
+}
+?>
 <body>
   <?php  include './includes/navbar.php' ?>
-
-
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb2.png">
         <div class="container">
@@ -32,7 +37,7 @@
             </div>
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="payment/pay.php" method="post">
+                <form action="cod.php" method="post">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <!-- <div class="row">

@@ -2,7 +2,13 @@
 
 <body>
     <?php include './includes/navbar.php' ?>
-
+    <?php
+if(isset($_COOKIE["user_cart"])) {
+    echo "User Cookie Value: " . $_COOKIE["user_cart"];
+} else {
+    echo "Cookie is not set!";
+}
+?>
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb2.png">
         <div class="container">

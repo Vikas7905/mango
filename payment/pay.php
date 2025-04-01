@@ -7,7 +7,7 @@ session_start();
 
 //  echo "seller".$_POST['sellerpincode'];
  if($_POST['village']==""){
-     if($_POST['postalCode']!=$_POST['sellerpincode']){
+     if(true){
       //header('Location:../checkout.php?messageid=Pincode is not Delivereble');
       //echo "pincode not match";
  }
@@ -15,7 +15,7 @@ session_start();
  else
  {
 $haystack = $_POST['village'];   
-$needle   = $_POST['pincode '];
+$needle   = $_POST['pincode'];
 if(!str_contains($haystack, $needle)) {
     //header('Location:../checkout.php?messageid=Pincode is not Delivereble');
 }
@@ -34,7 +34,7 @@ if (empty($_COOKIE['user_cart']) || intval($decoded->exp) < $currentTime || empt
 require('../constant.php');
 require('razorpay-php/Razorpay.php');
 $host = "localhost";
-$dsn = 'mysql:host=localhost;dbname=vegitabledb';
+$dsn = 'mysql:host=localhost;dbname=mangodb';
 $db_name = "mangodb";
 $username = "root";
 $password = "";
