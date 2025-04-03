@@ -1,11 +1,11 @@
 <?php include './includes/header.php' ?>
-
 <body>
     <?php include './includes/navbar.php' ?>
     <?php
 if(isset($_COOKIE["user_cart"])) {
     echo "User Cookie Value: " . $_COOKIE["user_cart"];
-} else {
+} 
+else {
     echo "Cookie is not set!";
 }
 ?>
