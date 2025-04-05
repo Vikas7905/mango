@@ -1,9 +1,23 @@
-<?php include './includes/header.php' ?>
+<?php include './includes/header.php';
+
+ ?>
 <?php
+
+ $host = "localhost";
+ $db_name = "mangodb";
+ $username = "root";
+ $password = "root";
+
+
+$conn = new mysqli($host, $username, $password, $db_name);
+// Check connection
+if ($conn->connect_error) {
+die("Connection failed: " . $conn->connect_error);
+}
 if(isset($_COOKIE["user_cart"])) {
     $jsonString = $_COOKIE["user_cart"];
     $data = json_decode($jsonString, true);
-    print_r($data);
+    //print_r($data);
     if (is_array($data)) {
         // Initialize variables for database insertion
         $orderItems = array();
@@ -35,31 +49,35 @@ if(isset($_COOKIE["user_cart"])) {
         $orderDate = date('Y-m-d H:i:s');
         $orderStatus = 'pending';
         $customerId = $_SESSION['user_id']; // Assuming you have user session
+        $orderId=rand(1,100)."-".time().rand(99,100);
+        $sgst=0;
+        $cgst=0;
+        $commision=0;
         
         // Example of how to use these variables for database insertion
-        /*
-        $sql = "INSERT INTO orders (customer_id, order_date, total_amount, status) 
-                VALUES ('$customerId', '$orderDate', '$totalAmount', '$orderStatus')";
         
-        // After inserting order, get the order_id
-        $orderId = $conn->insert_id;
-        
+        $query = "INSERT INTO orderDetails (orderId,userId, totalQuantity, subTotal, total,sgst,cgst,adminCommision) 
+                VALUES ('$orderId','$customerId', '$quantity', '$subtotal', '$totalAmount',$sgst,$cgst,$commision)";
+
+        $conn->query($query);
+  
+
+     
         // Insert order items
         foreach ($orderItems as $item) {
-            $sql = "INSERT INTO order_items (order_id, product_id, product_name, quantity, price, subtotal) 
-                    VALUES ('$orderId', '{$item['product_id']}', '{$item['product_name']}', 
+           echo $sql1 = "INSERT INTO orderitem (orderid,userid, productid, quantity, price, subtotal) 
+                    VALUES ('$orderId','$customerId', '{$item['product_id']}', 
                             '{$item['quantity']}', '{$item['price']}', '{$item['subtotal']}')";
+
+         $conn->query($sql1);
+
         }
-        */
         
-        // Display the prepared data
-        echo "Total Amount: $" . number_format($totalAmount, 2) . "<br>";
-        echo "Number of Items: " . count($orderItems) . "<br>";
-        echo "Order Date: " . $orderDate . "<br>";
     }
-} else {
-    echo "Cookie is not set!";
-}
+
+   // $conn->close();
+} 
+
 ?>
 <body>
   <?php  include './includes/navbar.php' ?>
@@ -80,12 +98,7 @@ if(isset($_COOKIE["user_cart"])) {
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-<?php
-    echo $_POST['village'];
-    echo $_POST['country'];
-    echo $_POST['pincode'];
 
-?>
 
 
     <!-- Checkout Section Begin -->

@@ -138,14 +138,14 @@ if(isset($_COOKIE["user_cart"])) {
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
                                         Online Payment
-                                        <input type="checkbox" id="payment">
+                                        <input type="radio" id="payment" name="payments" required>
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 <div class="checkout__input__checkbox">
                                     <label for="paypal">
                                         C.O.D
-                                        <input type="checkbox" id="paypal">
+                                        <input type="radio" id="paypal" name="payments" required>
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
